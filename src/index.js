@@ -40,7 +40,7 @@ app.post("/api/reservas", express.json(), async (req, res) => {
         console.log("Inserción exitosa, ID:", result.insertId);
         res
             .status(201)
-            .json({ id: result.insertId, nombre, email, telefono, fecha, hora, invitados });
+            .json({ id: result.insertId, name, email, phone, date, time, guest });
         console.log("Respuesta enviada al cliente.");
         console.log("Reserva creada con éxito:", { id: result.insertId, name, email, phone, date, time, guest });
         console.log("Datos recibidos:", req.body);
