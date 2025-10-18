@@ -39,7 +39,7 @@ app.post("/api/reservas", express.json(), async (req, res) => {
         console.log("Intentando insertar en la base de datos...");
         const [result] = await db.query(
             "INSERT INTO reservas (nombre, email, telefono, fecha, hora, invitados) VALUES (?, ?, ?, ?, ?, ?)",
-            [name, email, phone, date, time, guest]
+            [name, email, phone, date, time, parseInt(guest)]
         );
         console.log("Inserción exitosa, ID:", result.insertId);
         res
