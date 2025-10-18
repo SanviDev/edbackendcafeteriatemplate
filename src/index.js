@@ -1,10 +1,14 @@
 import express from "express";
 import dotenv from "dotenv";
 import db from "./config/db.js";
+import cross from "cors";
+
 
 dotenv.config({ path: "./src/.env" });
 
 const app = express();
+
+app.use(cross());
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
