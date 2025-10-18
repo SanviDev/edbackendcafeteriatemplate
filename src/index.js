@@ -33,20 +33,20 @@ app.get("/api/reservas", async (req, res) => {
 });
 
 app.post("/api/reservas", express.json(), async (req, res) => {
-    const { name, email, phone, date, time, guest } = req.body;
+    const { name, email, phone, date, time, guests } = req.body;
     console.log("POST /api/reservas recibido con datos:", req.body);
     try {
         console.log("Intentando insertar en la base de datos...");
         const [result] = await db.query(
             "INSERT INTO reservas (nombre, email, telefono, fecha, hora, invitados) VALUES (?, ?, ?, ?, ?, ?)",
-            [name, email, phone, date, time, parseInt(guest)]
+            [name, email, phone, date, time, parseInt(guests)]
         );
         console.log("Inserción exitosa, ID:", result.insertId);
         res
             .status(201)
-            .json({ id: result.insertId, name, email, phone, date, time, guest });
+            .json({ id: result.insertId, name, email, phone, date, time, guests });
         console.log("Respuesta enviada al cliente.");
-        console.log("Reserva creada con éxito:", { id: result.insertId, name, email, phone, date, time, guest });
+        console.log("Reserva creada con éxito:", { id: result.insertId, name, email, phone, date, time, guests });
         console.log("Datos recibidos:", req.body);
     } catch (err) {
         console.error(err);
